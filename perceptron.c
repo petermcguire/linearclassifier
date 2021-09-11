@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 #define FEATURES 3
 
@@ -14,9 +15,9 @@ struct Features {
     double x2;
 };
 
-void generatePlot(struct Features *f1, struct Features *f2, struct Weights *ws, u_int8_t stage) {
+void generatePlot(struct Features *f1, struct Features *f2, struct Weights *ws, uint8_t stage) {
     FILE *fp;
-    u_int8_t i;
+    uint8_t i;
 
     char filenameBase[] = "plot";
     char datExt[] = ".dat";
@@ -56,7 +57,7 @@ void generatePlot(struct Features *f1, struct Features *f2, struct Weights *ws, 
     fclose(fp);
 }
 
-int check(struct Features *f, struct Weights *ws, u_int8_t above) {
+int check(struct Features *f, struct Weights *ws, uint8_t above) {
     double m = -1*ws->w1/ws->w2;
     double b = -1*ws->w0/ws->w2;
     int result = 0;
@@ -86,13 +87,13 @@ void correct(struct Features *f, struct Weights *ws, int d, double rate) {
 
 
 int main () {
-    printf("HELLO!\n");
+    //printf("HELLO!\n");
 
     struct Weights ws;
     double learningRate = 0.1;
-    u_int8_t i;
-    u_int16_t j;
-    u_int8_t stop = 0;
+    uint8_t i;
+    uint16_t j;
+    uint8_t stop = 0;
     int d;
 
     ws.w0 = 1;
@@ -116,20 +117,20 @@ int main () {
     Bs[2].x1 = 0.55;
     Bs[2].x2 = -1.76;
 
-    generatePlot(As, Bs, &ws, 0);
+    // generatePlot(As, Bs, &ws, 0);
 
     while (stop != 1) {
         stop = 1;
     // for (j = 0; j < 10; j++) {
         for (i = 0; i < FEATURES; i++) {
             d = check(&As[i], &ws, 1);
-            printf("A[%u] with d = %d\n", i, d);
+            //printf("A[%u] with d = %d\n", i, d);
             if (d != 0) {
                 stop = 0;
                 correct(&As[i], &ws, d, learningRate);
             }
             d = check(&Bs[i], &ws, 0);
-            printf("B[%u] with d = %d\n", i, d);
+            //printf("B[%u] with d = %d\n", i, d);
             if (d != 0) {
                 stop = 0;
                 correct(&Bs[i], &ws, d, learningRate);
@@ -137,7 +138,7 @@ int main () {
         }
     }
 
-    generatePlot(As, Bs, &ws, 1);
+    // generatePlot(As, Bs, &ws, 1);
 
     return 0;
 }
