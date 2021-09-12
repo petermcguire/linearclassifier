@@ -117,7 +117,7 @@ int main () {
     Bs[2].x1 = 0.55;
     Bs[2].x2 = -1.76;
 
-    // generatePlot(As, Bs, &ws, 0);
+    generatePlot(As, Bs, &ws, 0);
 
     while (stop != 1) {
         stop = 1;
@@ -138,7 +138,7 @@ int main () {
         }
     }
 
-    // generatePlot(As, Bs, &ws, 1);
+    generatePlot(As, Bs, &ws, 1);
 
     return 0;
 }
