@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "fstream": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "sstream": "cpp",
+        "vector": "cpp",
+        "string": "cpp",
+        "filesystem": "cpp",
+        "array": "cpp",
+        "iterator": "cpp",
+        "string_view": "cpp",
+        "iostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
